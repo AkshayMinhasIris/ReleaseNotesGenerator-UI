@@ -1,0 +1,13 @@
+<div>
+    <h1>Generated Report</h1>
+    <mat-card *ngIf="report">
+      <mat-card-header>
+        <mat-card-title>Release Notes</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <ul>
+          <li *ngFor="let item of report.FeatureUpdates">{{ item }}</li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+  </div>

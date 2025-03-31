@@ -1,0 +1,82 @@
+<div class="container mt-4">
+  <div class="header-container bg-primary text-white p-4 rounded shadow-sm mb-4">
+    <h1 class="text-center">Pull Request Management</h1>
+    <p class="text-center">Select pull requests and generate a detailed report.</p>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <button mat-raised-button color="primary" (click)="generateReport()">Generate Report</button>  
+    <div class="selected-count">
+      <span *ngIf="selectedPRs?.length > 0" class="badge bg-success">
+        Selected: {{ selectedPRs.length }}
+      </span>
+    </div>
+  </div>
+
+
+  <div class="table-responsive">
+    <table mat-table [dataSource]="pullRequests" class="table table-striped table-hover table-bordered mat-elevation-z8">
+      
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef class="text-center">
+          <mat-checkbox (change)="selectAll($event.checked)" [checked]="allSelected"></mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let pr" class="text-center">
+          <mat-checkbox [(ngModel)]="pr.selected" (change)="updateSelectedPRs()"></mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>PR Title</th>
+        <td mat-cell *matCellDef="let pr">{{ pr.title }}</td>
+      </ng-container>
+
+      <!-- Details Column -->
+      <ng-container matColumnDef="details">
+        <th mat-header-cell *matHeaderCellDef>PR Details</th>
+        <td mat-cell *matCellDef="let pr">{{ pr.body }}</td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <!-- <td mat-cell *matCellDef="let pr">
+          <button mat-icon-button color="primary" (click)="editPR(pr)" matTooltip="Edit PR">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td> -->
+        <td mat-cell *matCellDef="let pr">
+          <button mat-icon-button color="warn" (click)="editPR(pr)" matTooltip="Edit PR">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  
+  <div *ngIf="generatedreporttext" class="report-section mt-5 p-4 bg-light border rounded shadow">
+    <h2 class="text-center text-primary">Generated Report</h2>
+
+    <div class="report-container">
+      <div *ngFor="let item of report; let i = index" class="report-item p-3 mb-3 border rounded shadow-sm">
+        <h4 class="text-secondary">Record #{{ i + 1 }}</h4>
+        <p><strong>Features:</strong> {{ item.features }}</p>
+        <p><strong>Details:</strong> {{ item.details }}</p>
+        <p><strong>Impact:</strong> {{ item.impact }}</p>
+      </div>
+    </div>
+
+    <ng-template #noData>
+      <p class="text-center">No report data available</p>
+    </ng-template>
+  </div>
+
+
+  
+</div>

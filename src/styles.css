@@ -1,1 +1,67 @@
-/* You can add global styles to this file, and also import other style files */
+/* Custom dialog container */
+.custom-dialog-container .mat-dialog-container {
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #fff;
+    transition: transform 0.3s, opacity 0.3s;
+    max-height: 90vh;
+  }
+  
+  /* Dialog Header */
+  .custom-dialog-container h2 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Form fields styling */
+  .custom-dialog-container mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  /* Button styling */
+  .custom-dialog-container .dialog-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  /* Save and Cancel Buttons */
+  .custom-dialog-container button {
+    padding: 10px 24px;
+    border-radius: 25px;
+    transition: all 0.3s;
+  }
+  
+  .custom-dialog-container button:hover {
+    transform: translateY(-3px);
+  }
+  
+  /* Save button specific styling */
+  .custom-dialog-container .save-btn {
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    border: none;
+  }
+  
+  .custom-dialog-container .cancel-btn {
+    background-color: #dc3545;
+    color: white;
+    font-weight: bold;
+    border: none;
+  }
+  
+  .custom-dialog-container .save-btn:hover {
+    background-color: #218838;
+  }
+  
+  .custom-dialog-container .cancel-btn:hover {
+    background-color: #c82333;
+  }
+  
